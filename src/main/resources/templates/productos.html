@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+</head>
+
+<body>
+
+<h1>Lista de productos</h1>
+
+<a href="/products/new">
+    Añadir producto
+</a>
+
+|
+
+<a href="/cart">
+    Ver carrito
+</a>
+
+<hr>
+
+<table border="1">
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="product : ${products}">
+
+        <td th:text="${product.id}">
+            1
+        </td>
+
+        <td th:text="${product.name}">
+            Producto
+        </td>
+
+        <td th:text="${product.price}">
+            10.00
+        </td>
+
+        <td>
+
+            <a th:href="@{/products/edit/{id}(id=${product.id})}">
+                Editar
+            </a>
+
+            |
+
+            <a th:href="@{/products/delete/{id}(id=${product.id})}">
+                Eliminar
+            </a>
+
+            |
+
+            <a th:href="@{/cart/add/{id}(id=${product.id})}">
+                Añadir al carrito
+            </a>
+
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+</body>
+</html>
